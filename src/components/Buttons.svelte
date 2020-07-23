@@ -14,7 +14,7 @@
 <style>
   .Buttons {
     width: 30vw;
-    margin: 0 auto;
+    margin: -35px auto 0px auto;
     text-align: center;
     font-size: 90px;
     display: flex;
