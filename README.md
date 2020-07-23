@@ -3,9 +3,11 @@
 
 > Tinder para desarrolladores, un proyecto creado para prácticar Svelte.js
 
+![Preview en Producción](https://i.ibb.co/0XYG46g/Preview.png)
+
 ### Producción:
 
-Programando...
+https://imatch.netlify.app
 
 ### Sistema de Diseño:
 
@@ -15,15 +17,15 @@ No aplica
 
 - Google Speed Insight (Ordenador)
 
-Pendiente...
+![Test Desktop](https://i.ibb.co/Yyxw8FR/Desktop.png)
 
 - Google Speed Insight (Móvil)
 
-Pendiente...
+![Test Móvil](https://i.ibb.co/5kQSSWL/Mobile.png)
 
 - Google Lighthouse
 
-Pendiente...
+![Test Móvil](https://i.ibb.co/hCvWGBs/Lighthouse.png)
 
 ---
 
