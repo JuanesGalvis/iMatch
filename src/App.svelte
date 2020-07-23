@@ -1,7 +1,7 @@
 <script>
-  import Card from "./components/Card.svelte";
-  import { onMount } from "svelte";
   import { loves } from "./store/store.js";
+  import { Nop } from "./store/store.js";
+  import Card from "./components/Card.svelte";
 </script>
 
 <style>
@@ -39,11 +39,14 @@
 
   .App .Loves {
     color: #ffffff;
-    justify-content: flex-start;
     font-size: 50px;
     margin: 0px 10px 0px auto;
     border-right: 10px solid white;
     padding-right: 10px;
+  }
+
+  .Contadores {
+    display: flex;
   }
 </style>
 
@@ -53,14 +56,18 @@
       iMatch
       <i class="fas fa-american-sign-language-interpreting" />
     </h1>
-    <h3 class="Loves">
-      {#if $loves === 0}
-        <i class="fas fa-heart-broken" />
-      {:else}
-        <i class="fas fa-heart" />
-      {/if}
-      {$loves}
-    </h3>
+    <div class="Contadores">
+      <h3 class="Loves">
+        <i
+          class="fas fa-heart-broken"
+          aria-label="Personal que no te gustaron" />
+        {$Nop}
+        <i class="fas fa-heart" aria-label="Personal que te gustaron" />
+        {$loves}
+      </h3>
+    </div>
   </div>
+
   <Card />
+
 </div>

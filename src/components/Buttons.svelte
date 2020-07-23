@@ -1,23 +1,29 @@
 <script>
   import { loves } from "../store/store.js";
+  import { Nop } from "../store/store.js";
 
   function ClickLove() {
     loves.update(n => n + 1);
   }
 
   function NotLove() {
-    loves.update(n => n - 1);
+    Nop.update(n => n + 1);
   }
 </script>
 
 <style>
   .Buttons {
     width: 30vw;
-    margin: 10px auto;
+    margin: 0 auto;
     text-align: center;
     font-size: 90px;
     display: flex;
     justify-content: space-around;
+  }
+
+  .Buttons a {
+    text-decoration: none;
+    margin: 0;
   }
 
   .Buttons .far {
@@ -44,6 +50,22 @@
 </style>
 
 <div class="Buttons">
-  <i class="far fa-times-circle" on:click={NotLove} />
-  <i class="far fa-check-circle" on:click={ClickLove} />
+  <a href="#">
+    <i
+      class="far fa-times-circle"
+      on:click
+      on:keypress
+      on:click={NotLove}
+      on:keypress={NotLove}
+      aria-label="No te gusta" />
+  </a>
+  <a href="#">
+    <i
+      class="far fa-check-circle"
+      on:click
+      on:keypress
+      on:click={ClickLove}
+      on:keypress={ClickLove}
+      aria-label="Si te gusta" />
+  </a>
 </div>

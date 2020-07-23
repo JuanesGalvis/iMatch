@@ -1,5 +1,46 @@
 <script>
   import Buttons from "./Buttons.svelte";
+  import { onMount } from "svelte";
+
+  let Tec = [
+    "Frontend",
+    "Backend",
+    "Data Science",
+    "Scrum Master",
+    "Founder",
+    "Python Dev",
+    "Graphic designer",
+    "Community Manager",
+    "Mobile apps",
+    "cybersecurity",
+    "Audiovisual Product"
+  ];
+  let datos = {};
+  let datosEnv = {};
+  onMount(CallFetch);
+
+  async function CallFetch() {
+    const res = await fetch("https://randomuser.me/api/");
+    datos = await res.json();
+    await console.log(datos);
+    await RenderCard(datos);
+  }
+
+  function RenderCard(data) {
+    let Trabajo = Tec[parseInt(Math.random() * 11)];
+
+    datosEnv = {
+      Nombre: data.results[0].name.first,
+      Apellido: data.results[0].name.last,
+      Ciudad: data.results[0].location.city,
+      Pais: data.results[0].location.state,
+      Celular: data.results[0].phone,
+      Genero: data.results[0].gender,
+      Jobs: Trabajo,
+      Foto: data.results[0].picture.large,
+      Correo: data.results[0].email
+    };
+  }
 </script>
 
 <style>
@@ -32,23 +73,61 @@
     font-size: 18px;
   }
 
-  .Datos .info i.fa-venus {
-    font-size: 60px;
+  .Datos .info .Left {
+    text-align: left;
+  }
+
+  p.Contact {
+    display: flex;
+    justify-content: space-around;
+    font-size: 28px;
+  }
+
+  p.Contact a {
+    text-decoration: none;
+    color: white;
   }
 </style>
 
 <div class="Datos">
   <figure>
-    <img
-      src="https://bolavip.com/__export/1588979208273/sites/bolavip/img/2020/05/08/greeicy-rendoxn-1280x720_jpg_1889316708_crop1588979207804.jpg_1902800913.jpg"
-      alt="Person" />
+    <img src={datosEnv.Foto} alt={datosEnv.Nombre} />
   </figure>
   <div class="info">
-    <i class="fas fa-venus" />
-    <h2>Una Woman</h2>
-    <p>Medellín ~ Colombia</p>
-    <p>Desarrolladora Web</p>
-    <p>444 44 44</p>
+    <div class="Left">
+      <h2 aria-label={datosEnv.Nombre}>
+        {datosEnv.Nombre} {datosEnv.Apellido}
+      </h2>
+      <h3 aria-label={datosEnv.Correo}>
+        <i class="far fa-envelope-open" />
+        {datosEnv.Correo}
+      </h3>
+      <p aria-label={datosEnv.Ciudad}>
+        <i class="fas fa-city" />
+        {datosEnv.Ciudad} ~ {datosEnv.Pais}
+      </p>
+      <p aria-label={datosEnv.Jobs}>
+        <i class="fas fa-briefcase" />
+        {datosEnv.Jobs}
+      </p>
+      <p aria-label={datosEnv.Celular}>
+        <i class="fab fa-whatsapp" />
+        {datosEnv.Celular}
+      </p>
+      <p
+        class="Contact"
+        aria-label="Cuenta con perfil en GitHub, Twitter y Linkedin">
+        <a href="#">
+          <i class="fab fa-github" />
+        </a>
+        <a href="#">
+          <i class="fab fa-twitter" />
+        </a>
+        <a href="#">
+          <i class="fab fa-linkedin-in" />
+        </a>
+      </p>
+    </div>
   </div>
 </div>
-<Buttons />
+<Buttons on:click={CallFetch} on:keypress={CallFetch} />
